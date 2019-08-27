@@ -101,5 +101,16 @@ class MovieZoneModel {
 		
 		return $result;		
 	}	
+
+	/*Return the list of studio
+	*/
+	public function selectAllstudio() {
+		$this->dbAdapter->dbOpen();
+		$result = $this->dbAdapter->studioSelectAll();
+		$this->dbAdapter->dbClose();
+		$this->error = $this->dbAdapter->lastError();
+		
+		return $result;		
+	}
 }
 ?>

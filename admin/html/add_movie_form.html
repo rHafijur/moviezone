@@ -1,14 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-</head>
-<body>
+
     <div class="row">
         <div class="col-12">
             <div class="card">
@@ -18,11 +8,9 @@
                 <div class="card-body">
                     <form action="">
                         <div class="card">
-                            <div class="card-body">
                                 <div class="card-header">
                                     <h5 class="card-title">New movie</h5>
                                 </div>
-                            </div>
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Title*</label>
@@ -46,19 +34,154 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Director*</label>
-                                    <input type="text" class="form-control" name="" required>
+                                    <div class="row">
+                                      <div class="col">
+                                        <select class="form-control" name="director" id="">
+                                            <option value="">select</option>
+                                            __director__
+                                        </select>
+                                      </div>
+                                      <div class="col">
+                                        <input type="text" class="form-control" name="new_director" placeholder="Or add new director">
+                                      </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Stdio*</label>
-                                    <input type="text" class="form-control" name="" required>
+                                    <label>Studio*</label>
+                                    <div class="row">
+                                      <div class="col">
+                                        <select class="form-control" name="studio" id="">
+                                            <option value="">select</option>
+                                            __studio__
+                                        </select>
+                                      </div>
+                                      <div class="col">
+                                        <input type="text" class="form-control" name="new_studio" placeholder="Or add new studio">
+                                      </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Genere*</label>
-                                    <input type="text" class="form-control" name="" required>
+                                    <label>Genre*</label>
+                                    <div class="row">
+                                      <div class="col">
+                                        <select class="form-control" name="genre" id="">
+                                            <option value="">select</option>
+                                            __genre__
+                                        </select>
+                                      </div>
+                                      <div class="col">
+                                        <input type="text" class="form-control" name="new_genere" placeholder="Or add new genre">
+                                      </div>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Classification*</label>
-                                    <input type="text" class="form-control" name="classification" required>
+                                    <div class="row">
+                                      <div class="col">
+                                        <select class="form-control" name="classification" id="">
+                                            <option value="">select</option>
+                                            <option value="G">G</option>
+                                            <option value="M">M</option>
+                                            <option value="MA">MA</option>
+                                            <option value="PG">PG</option>
+                                            <option value="R">R</option>
+                                        </select>
+                                      </div>
+                                      <div class="col">
+                                        <input type="text" class="form-control" name="new_classification" placeholder="Or add new classification">
+                                      </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">Stars & co-stars</h5>
+                                </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>First Star*</label>
+                                    <div class="row">
+                                      <div class="col">
+                                        <select class="form-control" name="1st_star" id="">
+                                            <option value="">select</option>
+                                            __actor__
+                                        </select>
+                                      </div>
+                                      <div class="col">
+                                        <input type="text" class="form-control" name="star1" placeholder="Or add new star">
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Second Star*</label>
+                                    <div class="row">
+                                      <div class="col">
+                                        <select class="form-control" name="2nd_star" id="">
+                                            <option value="">select</option>
+                                            __actor__
+                                        </select>
+                                      </div>
+                                      <div class="col">
+                                        <input type="text" class="form-control" name="star2" placeholder="Or add new star">
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Third Star</label>
+                                    <div class="row">
+                                      <div class="col">
+                                        <select class="form-control" name="3rd_star">
+                                            <option value="">select</option>
+                                            __actor__
+                                        </select>
+                                      </div>
+                                      <div class="col">
+                                        <input type="text" class="form-control" name="star3" placeholder="Or add new star">
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>First Co-star</label>
+                                    <div class="row">
+                                      <div class="col">
+                                        <select class="form-control" name="1st_costar">
+                                            <option value="">select</option>
+                                            __actor__
+                                        </select>
+                                      </div>
+                                      <div class="col">
+                                        <input type="text" class="form-control" name="costar1" placeholder="Or add new Co-star">
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Second Co-star</label>
+                                    <div class="row">
+                                      <div class="col">
+                                        <select class="form-control" name="2nd_costar">
+                                            <option value="">select</option>
+                                            __actor__
+                                        </select>
+                                      </div>
+                                      <div class="col">
+                                        <input type="text" class="form-control" name="costar2" placeholder="Or add new Co-star">
+                                      </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Third Co-star</label>
+                                    <div class="row">
+                                      <div class="col">
+                                        <select class="form-control" name="3rd_costar">
+                                            <option value="">select</option>
+                                            __actor__
+                                        </select>
+                                      </div>
+                                      <div class="col">
+                                        <input type="text" class="form-control" name="costar3" placeholder="Or add new Co-star">
+                                      </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -67,6 +190,15 @@
                                 <h5 class="card-title">Stock information</h5>
                             </div>
                             <div class="card-body">
+                                <div class="form-group">
+                                    <label>Rental Period*</label>
+                                    <select class="form-control" name="rental_period" id="">
+                                        <option value="">select</option>
+                                        <option value="3 Day">3 Day</option>
+                                        <option value="Weekly">Weekly</option>
+                                        <option value="Overnight">Overnight</option>
+                                    </select>
+                                </div>
                                 <div class="card">
                                     <div class="card-header">
                                         <h5 class="card-title">DVD</h5>
@@ -74,19 +206,19 @@
                                     <div class="card-body">
                                         <div class="form-group">
                                             <label>Rental price*</label>
-                                            <input type="text" class="form-control" name="" required>
+                                            <input type="text" class="form-control" name="dvd_rental_price" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Purchase price*</label>
-                                            <input type="text" class="form-control" name="" required>
+                                            <input type="text" class="form-control" name="dvd_purchase_price" required>
                                         </div>
                                         <div class="form-group">
                                             <label>In-stock*</label>
-                                            <input type="text" class="form-control" name="" required>
+                                            <input type="text" class="form-control" name="dvd_in_tock" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Rented*</label>
-                                            <input value="0" type="text" class="form-control" name="" required>
+                                            <input value="0" type="text" class="form-control" name="dvd_rented" required>
                                         </div>
                                     </div>
                                 </div>
@@ -97,19 +229,19 @@
                                     <div class="card-body">
                                         <div class="form-group">
                                             <label>Rental price*</label>
-                                            <input type="text" class="form-control" name="" required>
+                                            <input type="text" class="form-control" name="blue_rental_price" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Purchase price*</label>
-                                            <input type="text" class="form-control" name="" required>
+                                            <input type="text" class="form-control" name="blue_purchase_price" required>
                                         </div>
                                         <div class="form-group">
                                             <label>In-stock*</label>
-                                            <input type="text" class="form-control" name="" required>
+                                            <input type="text" class="form-control" name="blue_in_tock" required>
                                         </div>
                                         <div class="form-group">
                                             <label>Rented*</label>
-                                            <input value="0" type="text" class="form-control" name="" required>
+                                            <input value="0" type="text" class="form-control" name="blue_rented" required>
                                         </div>
                                     </div>
                                 </div>
@@ -120,5 +252,3 @@
             </div>
         </div>
     </div>
-</body>
-</html>

@@ -24,6 +24,9 @@ class MovieZoneAdminView {
 	public function leftNavPanel() {
 		print file_get_contents('html/leftnav.html');
 	}
+
+
+
 	
 	/*Creates top navigation panel
 	*/	
@@ -73,7 +76,7 @@ class MovieZoneAdminView {
 		";
 		//------------------
 		foreach ($studio as $studio) {			
-			print "<option value='".$studio['studio_id']."'>".$studio['name']."</option>";
+			print "<option value='".$studio['studio_id']."'>".$studio['studio_name']."</option>";
 		}
 	}
 	
@@ -85,8 +88,31 @@ class MovieZoneAdminView {
 	
 	/*Displays Movie insertion form
 	*/
-	public function showMovieInsertForm() {
-		print "Movie Form";
+	public function showMovieInsertForm($director,$actor,$genre,$studio) {
+		$dir="";
+		$act="";
+		$gen="";
+		$std="";
+		foreach ($director as $d) {
+			$dir.="<option value='".$d['director_id']."'>".$d['director_name']."</option>";
+		}
+		foreach ($actor as $a) {
+			$act.="<option value='".$a['actor_id']."'>".$a['actor_name']."</option>";
+		}
+
+		foreach ($genre as $g) {
+			$gen.="<option value='".$g['genre_id']."'>".$g['genre_name']."</option>";
+		}
+		foreach ($studio as $s) {
+			$std.="<option value='".$s['studio_id']."'>".$s['studio_name']."</option>";
+		}
+
+		$formHtml= file_get_contents('html/add_movie_form.html');
+		$formHtml=str_replace("__genre__", $gen, $formHtml);
+		$formHtml=str_replace("__director__", $dir, $formHtml);
+		$formHtml=str_replace("__actor__", $act, $formHtml);
+		$formHtml=str_replace("__studio__", $std, $formHtml);
+		print $formHtml;
 	}
 	/*Displays an array of movie
 	*/

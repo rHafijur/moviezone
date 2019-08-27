@@ -27,7 +27,7 @@ class MovieZoneView {
 	
 	/*Creates top navigation panel
 	*/	
-	public function topNavPanel($director, $actor, $genre) {
+	public function topNavPanel($director, $actor, $genre, $studio) {
 		print "
 		<div style='color: #0e5968; float:left;'>
 			<div class='topnav'>
@@ -73,7 +73,7 @@ class MovieZoneView {
 		";
 		//------------------
 		foreach ($studio as $studio) {			
-			print "<option value='".$studio['studio_id']."'>".$studio['name']."</option>";
+			print "<option value='".$studio['studio_id']."'>".$studio['studio_name']."</option>";
 		}
 	}
 	

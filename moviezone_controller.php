@@ -35,8 +35,9 @@ class MovieZoneController {
 		$director = $this->model->selectAlldirector();
 		$actor = $this->model->selectAllactor();
 		$genre = $this->model->selectAllgenre();
+		$studio = $this->model->selectAllstudio();
 		if (($director != null) && ($actor != null) && ($genre != null)) {
-			$this->view->topNavPanel($director, $actor, $genre);
+			$this->view->topNavPanel($director, $actor, $genre, $studio);
 		}
 		else {
 			$error = $this->model->getError();

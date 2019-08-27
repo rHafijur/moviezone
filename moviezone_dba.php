@@ -194,6 +194,16 @@ class DBAdaper {
 					// var_dump($result);
 					// exit();
 				}
+				if($key=='studio'){
+					$smt = $this->dbConn->prepare(
+						"SELECT studio_name from studio where studio_id='$value'");							  				
+					//Execute the query
+					$smt->execute();
+					$result = $smt->fetchAll(PDO::FETCH_ASSOC);	
+					$value=$result[0]['studio_name'];
+					// var_dump($result);
+					// exit();
+				}
 				if (!empty($value)) {
 					if ($and){
 						$clause = $clause." $condition $key $op '$value'";
@@ -345,6 +355,35 @@ class DBAdaper {
 				//Make a prepared query so that we can use data binding and avoid SQL injections. 
 				//(modify suit the A2 member table)
 				$smt = $this->dbConn->prepare('SELECT * FROM director');
+				//Execute the query
+				$smt->execute();
+				$result = $smt->fetchAll(PDO::FETCH_ASSOC);	
+				//use PDO::FETCH_BOTH to have both column name and column index
+				//$result = $sql->fetchAll(PDO::FETCH_BOTH);
+			}catch (PDOException $e) {
+				//Return the error message to the caller
+				$this->dbError = $e->getMessage();
+				$result = null;
+			}
+		} else {
+			$this->dbError = MSG_ERR_CONNECTION;
+		}
+	
+		return $result;			
+	}
+
+
+	/*Select all existing studio from the  studio table
+	@return: an array of studio with column name as the keys;
+	*/
+	public function studioSelectAll() {
+		$result = null;
+		$this->dbError = null; //reset the error message before any execution
+		if ($this->dbConn != null) {		
+			try {
+				//Make a prepared query so that we can use data binding and avoid SQL injections. 
+				//(modify suit the A2 member table)
+				$smt = $this->dbConn->prepare('SELECT * FROM studio');
 				//Execute the query
 				$smt->execute();
 				$result = $smt->fetchAll(PDO::FETCH_ASSOC);	

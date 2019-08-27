@@ -72,7 +72,11 @@ class MovieZoneAdminController {
 	/*Shows Movie insertion form
 	*/
 	private function addNewMovieFormRequest() {
-			$this->view->showMovieInsertForm();
+			$director = $this->model->selectAlldirector();
+			$actor = $this->model->selectAllactor();
+			$genre = $this->model->selectAllgenre();
+			$studio = $this->model->selectAllstudio();
+			$this->view->showMovieInsertForm($director,$actor,$genre,$studio);
 			$error = $this->model->getError();
 			if (!empty($error))
 				$this->view->showError($error);	

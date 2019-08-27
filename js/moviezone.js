@@ -1,7 +1,7 @@
 /*Use onload event to load the page with random cars
 */
 window.addEventListener("load", function(){
-    makeAjaxGetRequest('moviezone_admin_main.php', 'cmd_movie_select_random', null, updateContent);
+    makeAjaxGetRequest('moviezone_main.php', 'cmd_movie_select_random', null, updateContent);
 	//show the top navigation panel
 	document.getElementById('id_topnav').style.display = "none";
 });
@@ -23,13 +23,13 @@ function movieFilterChanged() {
 	if (!isNaN(studio))
 		params += '&studio=' + studio;
 
-	makeAjaxGetRequest('moviezone_admin_main.php', 'cmd_movie_filter', params, updateContent);
+	makeAjaxGetRequest('moviezone_main.php', 'cmd_movie_filter', params, updateContent);
 }
 
 /*Handles show all movies onlick event to show all movies
 */
 function movieShowAllClick() {	
-	makeAjaxGetRequest('moviezone_admin_main.php','cmd_movie_select_all', null, updateContent);
+	makeAjaxGetRequest('moviezone_main.php','cmd_movie_select_all', null, updateContent);
 	//hide the top navigation panel
 	document.getElementById('id_topnav').style.display = "none";
 }
@@ -38,7 +38,7 @@ function movieShowAllClick() {
 */
 function movieFilterClick() {
 	//load the navigation panel on demand
-	makeAjaxGetRequest('moviezone_admin_main.php', 'cmd_show_top_nav', null, updateTopNav);
+	makeAjaxGetRequest('moviezone_main.php', 'cmd_show_top_nav', null, updateTopNav);
 }
 
 /*Updates the content area if success
