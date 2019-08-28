@@ -58,8 +58,8 @@ class MovieZoneAdminController {
 			case CMD_MOVIE_SELECT_RANDOM: 
 				$this->handleSelectRandomMovieRequest();
 				break;
-			case CMD_MOVIE_FILTER: 
-				$this->handleFilterMovieRequest();
+			case CMD_SHOW_SEARCH_MOVIE_PAGE: 
+				$this->handleMovieSearchPageRequest();
 				break;	
 			case CMD_MOVIE_FORM: 
 				$this->addNewMovieFormRequest();
@@ -68,7 +68,7 @@ class MovieZoneAdminController {
 				$this->saveNewMovieRequest();
 				break;					
 			default:
-				$this->handleSelectRandomMovieRequest();
+				$this->loadAdminHome();
 				break;
 		}
 	}
@@ -91,6 +91,22 @@ class MovieZoneAdminController {
 			$data=$_POST;
 			$data['poster']=$file_name;
 			$this->model->saveMovie($data);
+			$error = $this->model->getError();
+			if (!empty($error)){
+				$this->view->showError($error);	
+			}else{
+				session_start();
+				$_SESSION['success_msg']="Movie Added Successfully";
+				// session_destroy();
+				header("Location: index.php");
+			}
+
+	}
+	/*Shows Movie insertion form
+	*/
+	private function handleMovieSearchPageRequest() {
+			$movie = $this->model->selectAllMovie();
+			$this->view->showMovieSearchPage($movie);
 			$error = $this->model->getError();
 			if (!empty($error))
 				$this->view->showError($error);	
@@ -118,6 +134,11 @@ class MovieZoneAdminController {
 			if (!empty($error))
 				$this->view->showError($error);
 		}		
+	}
+	/*Handles admin home request
+	*/
+	private function loadAdminHome() {	
+		$this->view->showHome();		
 	}
 	/*Handles select random movie request
 	*/

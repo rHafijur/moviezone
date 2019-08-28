@@ -85,7 +85,31 @@ class MovieZoneAdminView {
 	public function showError($error) {
 		print "<h2>Error: $error</h2>";
 	}
-	
+	/*Displays Admin home
+	*/
+	public function showHome() {
+		session_start();
+		$msg="";
+		if(isset($_SESSION['success_msg']) && $_SESSION['success_msg']!=''){
+			$msg=$_SESSION['success_msg'];
+		}
+		print "<h2>Admin Home</h2><h4>$msg</h4>";
+		$_SESSION['success_msg']='';
+	}
+	/*Displays Admin home
+	*/
+	public function showMovieSearchPage($movie) {
+		$count= count($movie);
+		$mov="";
+		foreach ($movie as $m) {
+			$mov.="<option value='".$m['movie_id']."'>".$m['title']."-".$m['year']."</option>";
+		}
+
+		$html=file_get_contents('html/select_movie.html');
+		$html= str_replace('__count__',$count,$html);
+		$html= str_replace('__movie__',$mov,$html);
+		print $html;
+	}
 	/*Displays Movie insertion form
 	*/
 	public function showMovieInsertForm($director,$actor,$genre,$studio) {

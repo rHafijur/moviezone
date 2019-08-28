@@ -1,7 +1,7 @@
 /*Use onload event to load the page with random cars
 */
 window.addEventListener("load", function(){
-    makeAjaxGetRequest('moviezone_admin_main.php', 'cmd_movie_select_random', null, updateContent);
+    makeAjaxGetRequest('moviezone_admin_main.php', null, null, updateContent);
 	//show the top navigation panel
 	document.getElementById('id_topnav').style.display = "none";
 });
@@ -45,6 +45,18 @@ function movieFilterClick() {
 function addNewMovie() {
 	//load the movie form
 	makeAjaxGetRequest('moviezone_admin_main.php', 'cmd_movie_form', null, updateContent);
+}
+/*Handles movie search page
+*/
+function searchPage() {
+	//load the search page
+	makeAjaxGetRequest('moviezone_admin_main.php', 'cmd_show_search_movie_page', null, updateContent);
+}
+function searchMovie() {
+	//load the search page
+	// makeAjaxGetRequest('moviezone_admin_main.php', 'cmd_show_search_movie_page', null, updateContent);
+	var movie_id=document.getElementsByName("edit_movie_id")[0].value;
+	alert(movie_id);
 }
 
 /*Updates the content area if success

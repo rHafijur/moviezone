@@ -21,6 +21,7 @@ define ('CMD_MOVIE_SELECT_ALL', 'cmd_movie_select_all');
 define ('CMD_MOVIE_FILTER', 'cmd_movie_filter'); //filter movie by submitted parameters
 define ('CMD_MOVIE_FORM', 'cmd_movie_form'); //display movie form
 define ('CMD_SAVE_NEW_MOVIE', 'cmd_save_new_movie'); //Save a new movie to the database
+define ('CMD_SHOW_SEARCH_MOVIE_PAGE', 'cmd_show_search_movie_page'); //Show Search movie page
 
 //define error messages
 define ('errSuccess', 'SUCCESS'); //no error, command is successfully executed
