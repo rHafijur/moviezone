@@ -63,11 +63,37 @@ class MovieZoneAdminController {
 				break;	
 			case CMD_MOVIE_FORM: 
 				$this->addNewMovieFormRequest();
+				break;	
+			case CMD_SAVE_NEW_MOVIE: 
+				$this->saveNewMovieRequest();
 				break;					
 			default:
 				$this->handleSelectRandomMovieRequest();
 				break;
 		}
+	}
+	/*Shows Movie insertion form
+	*/
+	private function saveNewMovieRequest() {
+			if(isset($_FILES['poster'])){
+				$file_type=$_FILES['poster']['type'];
+				$file_name=$_FILES['poster']['name'];
+				$file_tmp =$_FILES['poster']['tmp_name'];
+				$file_ex=explode('.',$file_name);
+				$file_ext=strtolower(end($file_ex));
+				$extensions= array("jpeg","jpg","png");
+				if(in_array($file_ext,$extensions)=== false){
+					$this->view->showError("Invalid File!");
+					return;
+				}
+				move_uploaded_file($file_tmp,"../photos/".$file_name);
+			}
+			$data=$_POST;
+			$data['poster']=$file_name;
+			$this->model->saveMovie($data);
+			$error = $this->model->getError();
+			if (!empty($error))
+				$this->view->showError($error);	
 	}
 	/*Shows Movie insertion form
 	*/

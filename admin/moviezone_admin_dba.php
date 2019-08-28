@@ -140,6 +140,93 @@ class AdminDBAdaper {
 		return $clause;
 	}
 	
+		
+	/*Create Director
+	@return: an director id
+	*/
+	public function CreateDirector($director) {
+		$result = null;
+		$this->dbError = null; //reset the error message before any execution
+		if ($this->dbConn != null) {		
+			try {
+				//Make a prepared query so that we can use data binding and avoid SQL injections. 
+				//(modify suit the A2 member table)
+				$smt = $this->dbConn->prepare(
+					"INSERT into director(director_name) values ('$director')");							  				
+				//Execute the query
+				$smt->execute();
+				$smt = $this->dbConn->prepare(
+					"SELECT director_id from director order by director_id desc limit 1");							  				
+				//Execute the query
+				$smt->execute();
+				$result = $smt->fetchAll(PDO::FETCH_ASSOC);
+				$result =$result[0]['director_id'];
+				//use PDO::FETCH_BOTH to have both column name and column index
+				//$result = $sql->fetchAll(PDO::FETCH_BOTH);
+			}catch (PDOException $e) {
+				//Return the error message to the caller
+				$this->dbError = $e->getMessage();
+				$result = null;
+			}
+		} else {
+			$this->dbError = MSG_ERR_CONNECTION;
+		}
+	
+		return $result;			
+	}
+		
+	/*Insert Movie to the database
+
+	*/
+	public function saveMovie($data) {
+		$result = null;
+		$title=$data['title'];
+		$year=$data['year'];
+		$tag_line=$data['tag_line'];
+		$plot=$data['plot'];
+		$director=$data['director'];
+		$new_director=$data['new_director'];
+		$studio=$data['studio'];
+		$new_studio=$data['new_studio'];
+		$genre=$data['genre'];
+		$new_genre=$data['new_genre'];
+		$classification=$data['classification'];
+		$rental_period=$data['rental_period'];
+		$dvd_rental_price=$data['dvd_rental_price'];
+		$dvd_purchase_price=$data['dvd_purchase_price'];
+		$dvd_in_stock=$data['dvd_in_stock'];
+		$dvd_rented=$data['dvd_rented'];
+		$blue_rental_price=$data['blue_rental_price'];
+		$blue_purchase_price=$data['blue_purchase_price'];
+		$blue_in_stock=$data['blue_in_stock'];
+		$blue_rented=$data['blue_rented'];
+		$poster=$data['poster'];
+		$this->dbError = null; //reset the error message before any execution
+		if ($this->dbConn != null) {		
+			try {
+				//Make a prepared query so that we can use data binding and avoid SQL injections. 
+				//(modify suit the A2 member table)
+				$smt = $this->dbConn->prepare(
+					"INSERT into movie(title, tagline, plot, thumbpath, director_id, studio_id, genre_id, classification, rental_period, year, DVD_rental_price, DVD_purchase_price, numDVD, numDVDout, BluRay_rental_price, BluRay_purchase_price, numBluRay, numBluRayOut)
+					values('$title', '$tag_line', '$plot','$poster', $director, $studio, $genre, '$classification', '$rental_period', $year, $dvd_rental_price,$dvd_purchase_price, $dvd_in_stock, $dvd_rented,$blue_rental_price,$blue_purchase_price,$blue_in_stock,$blue_rented)
+					");							  				
+				//Execute the query
+				$smt->execute();
+				$result = $smt->fetchAll(PDO::FETCH_ASSOC);	
+				//use PDO::FETCH_BOTH to have both column name and column index
+				//$result = $sql->fetchAll(PDO::FETCH_BOTH);
+			}catch (PDOException $e) {
+				//Return the error message to the caller
+				$this->dbError = $e->getMessage();
+				$result = null;
+			}
+		} else {
+			$this->dbError = MSG_ERR_CONNECTION;
+		}
+	
+		return $result;			
+	}
+
 	/*Select all existing movie from the movie table
 	@return: an array of matched movie
 	*/

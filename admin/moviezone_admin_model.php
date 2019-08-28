@@ -57,6 +57,17 @@ class MovieZoneAdminModel {
 		
 		return $result;
 	}	
+	/*Filter movie from the database
+	*/
+	public function saveMovie($data) {
+
+		$this->dbAdapter->dbOpen();
+		// var_dump($data);
+		$this->dbAdapter->saveMovie($data);
+		$this->dbAdapter->dbClose();
+		$this->error = $this->dbAdapter->lastError();
+		
+	}	
 	
 	/*Selects randomly a $max number of movie from the database
 	*/

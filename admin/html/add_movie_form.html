@@ -6,7 +6,7 @@
                     Add new movie
                 </div>
                 <div class="card-body">
-                    <form action="">
+                    <form action="moviezone_admin_main.php?request=cmd_save_new_movie" enctype="multipart/form-data" method="post">
                         <div class="card">
                                 <div class="card-header">
                                     <h5 class="card-title">New movie</h5>
@@ -14,23 +14,23 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Title*</label>
-                                    <input type="text" class="form-control" name="title" required>
+                                    <input type="text" class="form-control" name="title" require>
                                 </div>
                                 <div class="form-group">
                                     <label>Year*</label>
-                                    <input type="number" class="form-control" name="year" required>
+                                    <input type="number" class="form-control" name="year" require>
                                 </div>
                                 <div class="form-group">
                                     <label>Tag line*</label>
-                                    <input type="text" class="form-control" name="tag_line" required>
+                                    <input type="text" class="form-control" name="tag_line" require>
                                 </div>
                                 <div class="form-group">
                                     <label>Plot*</label>
-                                    <textarea name="plot" class="form-control" rows="5"></textarea>
+                                    <textarea name="plot" class="form-control" rows="5" require></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Poster*</label>
-                                    <input type="file" class="form-control" name="poster" required>
+                                    <input type="file" class="form-control" name="poster" require>
                                 </div>
                                 <div class="form-group">
                                     <label>Director*</label>
@@ -70,7 +70,7 @@
                                         </select>
                                       </div>
                                       <div class="col">
-                                        <input type="text" class="form-control" name="new_genere" placeholder="Or add new genre">
+                                        <input type="text" class="form-control" name="new_genre" placeholder="Or add new genre">
                                       </div>
                                     </div>
                                 </div>
@@ -206,19 +206,19 @@
                                     <div class="card-body">
                                         <div class="form-group">
                                             <label>Rental price*</label>
-                                            <input type="text" class="form-control" name="dvd_rental_price" required>
+                                            <input type="text" class="form-control" name="dvd_rental_price" require>
                                         </div>
                                         <div class="form-group">
                                             <label>Purchase price*</label>
-                                            <input type="text" class="form-control" name="dvd_purchase_price" required>
+                                            <input type="text" class="form-control" name="dvd_purchase_price" require>
                                         </div>
                                         <div class="form-group">
                                             <label>In-stock*</label>
-                                            <input type="text" class="form-control" name="dvd_in_tock" required>
+                                            <input type="text" class="form-control" name="dvd_in_stock" require>
                                         </div>
                                         <div class="form-group">
                                             <label>Rented*</label>
-                                            <input value="0" type="text" class="form-control" name="dvd_rented" required>
+                                            <input value="0" type="text" class="form-control" name="dvd_rented" require>
                                         </div>
                                     </div>
                                 </div>
@@ -229,19 +229,19 @@
                                     <div class="card-body">
                                         <div class="form-group">
                                             <label>Rental price*</label>
-                                            <input type="text" class="form-control" name="blue_rental_price" required>
+                                            <input type="text" class="form-control" name="blue_rental_price" require>
                                         </div>
                                         <div class="form-group">
                                             <label>Purchase price*</label>
-                                            <input type="text" class="form-control" name="blue_purchase_price" required>
+                                            <input type="text" class="form-control" name="blue_purchase_price" require>
                                         </div>
                                         <div class="form-group">
                                             <label>In-stock*</label>
-                                            <input type="text" class="form-control" name="blue_in_tock" required>
+                                            <input type="text" class="form-control" name="blue_in_stock" require>
                                         </div>
                                         <div class="form-group">
                                             <label>Rented*</label>
-                                            <input value="0" type="text" class="form-control" name="blue_rented" required>
+                                            <input value="0" type="text" class="form-control" name="blue_rented" require>
                                         </div>
                                     </div>
                                 </div>
