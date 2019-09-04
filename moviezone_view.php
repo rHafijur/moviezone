@@ -92,6 +92,12 @@ class MovieZoneView {
 			}
 		}
 	}
+	/*Displays an array of movie
+	*/
+	public function loadJoinMemberPage() {
+		$html=file_get_contents("html/join_member.html");
+		print $html;
+	}
 	
 	/*Format a movie into html
 	*/

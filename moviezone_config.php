@@ -19,6 +19,7 @@ define ('CMD_SHOW_TOP_NAV', 'cmd_show_top_nav'); //create and show top navigatio
 define ('CMD_MOVIE_SELECT_RANDOM', 'cmd_movie_select_random');
 define ('CMD_MOVIE_SELECT_ALL', 'cmd_movie_select_all');
 define ('CMD_MOVIE_FILTER', 'cmd_movie_filter'); //filter movie by submitted parameters
+define ('CMD_JOIN_MEMBER', 'cmd_join_member'); //loads member join page
 
 //define error messages
 define ('errSuccess', 'SUCCESS'); //no error, command is successfully executed

@@ -67,12 +67,21 @@ class MovieZoneAdminController {
 			case CMD_SAVE_NEW_MOVIE: 
 				$this->saveNewMovieRequest();
 				break;					
+			case CMD_MOVIE_EDIT_FORM: 
+				$this->editMovieFormRequest();
+				break;					
+			case CMD_UPDATE_MOVIE: 
+				$this->updateMovieRequest();
+				break;					
+			case CMD_DELETE_MOVIE: 
+				$this->deleteMovieRequest();
+				break;					
 			default:
 				$this->loadAdminHome();
 				break;
 		}
 	}
-	/*Shows Movie insertion form
+	/*inserts Movie into database
 	*/
 	private function saveNewMovieRequest() {
 			if(isset($_FILES['poster'])){
@@ -102,11 +111,53 @@ class MovieZoneAdminController {
 			}
 
 	}
+	/*Updates Movie
+	*/
+	private function updateMovieRequest() {
+			$data=$_POST;
+			$this->model->updateMovie($data);
+			$error = $this->model->getError();
+			if (!empty($error)){
+				$this->view->showError($error);	
+			}else{
+				session_start();
+				$_SESSION['success_msg']="Movie Updated Successfully";
+				// session_destroy();
+				header("Location: index.php");
+			}
+
+	}
+	/*Deletes Movie
+	*/
+	private function deleteMovieRequest() {
+			$id=$_POST['movie_id'];
+			$this->model->deleteMovie($id);
+			$error = $this->model->getError();
+			if (!empty($error)){
+				$this->view->showError($error);	
+			}else{
+				session_start();
+				$_SESSION['success_msg']="Movie Deleted Successfully";
+				// session_destroy();
+				header("Location: index.php");
+			}
+
+	}
 	/*Shows Movie insertion form
 	*/
 	private function handleMovieSearchPageRequest() {
 			$movie = $this->model->selectAllMovie();
 			$this->view->showMovieSearchPage($movie);
+			$error = $this->model->getError();
+			if (!empty($error))
+				$this->view->showError($error);	
+	}
+	/*Shows Movie Edit form
+	*/
+	private function editMovieFormRequest() {
+			$movie_id=$_GET['movie_id'];
+			$movie = $this->model->selectMovie($movie_id);
+			$this->view->editMoviePage($movie);
 			$error = $this->model->getError();
 			if (!empty($error))
 				$this->view->showError($error);	

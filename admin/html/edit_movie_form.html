@@ -1,0 +1,113 @@
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    Edit movie
+                </div>
+                <div class="card-body">
+                    <form action="moviezone_admin_main.php?request=cmd_update_movie" enctype="multipart/form-data" method="post">
+                        <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">Edit movie</h5>
+                                </div>
+                            <div class="card-body">
+                                <input type="hidden" name="movie_id" value="__id__">
+                                    <div class="form-group">
+                                            <label>ID</label>
+                                            <input type="text" value="__id__" class="form-control" readonly>
+                                    </div>
+                                <div class="form-group">
+                                    <label>Title*</label>
+                                    <input type="text" value="__title__" class="form-control" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>Year*</label>
+                                    <input type="number" value="__year__" class="form-control"  readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>Tag line*</label>
+                                    <input type="text" value="__tag__" class="form-control"readonly>
+                                </div>
+                               
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Stock information</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Rental Period*</label>
+                                    <select class="form-control" name="rental_period" id="">
+                                        <option value="">select</option>
+                                        <option value="3 Day">3 Day</option>
+                                        <option value="Weekly">Weekly</option>
+                                        <option value="Overnight">Overnight</option>
+                                    </select>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title">DVD</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label>Rental price*</label>
+                                            <input type="text" class="form-control" value="__drp__" name="dvd_rental_price" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Purchase price*</label>
+                                            <input type="text" class="form-control" value="__dpp__" name="dvd_purchase_price" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>In-stock*</label>
+                                            <input type="text" class="form-control" value="__dis__" name="dvd_in_stock" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Rented*</label>
+                                            <input value="0" type="text" class="form-control" value="__dr__" name="dvd_rented" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h5 class="card-title">BluRay</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label>Rental price*</label>
+                                            <input type="text" class="form-control" value="__brp__" name="blue_rental_price" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Purchase price*</label>
+                                            <input type="text" class="form-control" value="__bpp__" name="blue_purchase_price" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>In-stock*</label>
+                                            <input type="text" class="form-control" value="__bis__" name="blue_in_stock" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Rented*</label>
+                                            <input value="0" type="text" class="form-control" value="__br__" name="blue_rented" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                          <button class="btn btn-success">Update</button>
+                        </div>
+                    </form>
+                    <form action="moviezone_admin_main.php?request=cmd_delete_movie" method="POST">
+                        <input type="hidden" name="movie_id" value="__id__">
+                        <div class="form-group">
+                        <button class="btn btn-danger">
+                            Delete
+                        </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

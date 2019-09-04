@@ -93,7 +93,7 @@ class MovieZoneAdminView {
 		if(isset($_SESSION['success_msg']) && $_SESSION['success_msg']!=''){
 			$msg=$_SESSION['success_msg'];
 		}
-		print "<h2>Admin Home</h2><h4>$msg</h4>";
+		print "<h2>Admin Home</h2><h3>".$_SESSION['admin']."</h3><h4>$msg</h4>";
 		$_SESSION['success_msg']='';
 	}
 	/*Displays Admin home
@@ -136,6 +136,30 @@ class MovieZoneAdminView {
 		$formHtml=str_replace("__director__", $dir, $formHtml);
 		$formHtml=str_replace("__actor__", $act, $formHtml);
 		$formHtml=str_replace("__studio__", $std, $formHtml);
+		print $formHtml;
+	}
+	/*Displays Movie insertion form
+	*/
+	public function editMoviePage($movie) {
+
+
+		$formHtml= file_get_contents('html/edit_movie_form.html');
+		$formHtml=str_replace("__id__", $movie['movie_id'], $formHtml);
+		$formHtml=str_replace("__title__", $movie['title'], $formHtml);
+		$formHtml=str_replace("__year__", $movie['year'], $formHtml);
+		$formHtml=str_replace("__tag__", $movie['tagline'], $formHtml);
+		$formHtml=str_replace('value="'.$movie['rental_period'].'"','value="'.$movie['rental_period'].'" selected',$formHtml);
+		$formHtml=str_replace("__drp__", $movie['DVD_rental_price'], $formHtml);
+		$formHtml=str_replace("__dpp__", $movie['DVD_purchase_price'], $formHtml);
+		$formHtml=str_replace("__dis__", $movie['numDVD'], $formHtml);
+		$formHtml=str_replace("__dr__", $movie['numDVDout'], $formHtml);
+		$formHtml=str_replace("__brp__", $movie['BluRay_rental_price'], $formHtml);
+		$formHtml=str_replace("__bpp__", $movie['BluRay_purchase_price'], $formHtml);
+		$formHtml=str_replace("__bis__", $movie['numBluRay'], $formHtml);
+		$formHtml=str_replace("__br__", $movie['numBluRayOut'], $formHtml);
+		// $formHtml=str_replace("__director__", $dir, $formHtml);
+		// $formHtml=str_replace("__actor__", $act, $formHtml);
+		// $formHtml=str_replace("__studio__", $std, $formHtml);
 		print $formHtml;
 	}
 	/*Displays an array of movie

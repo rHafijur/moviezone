@@ -56,7 +56,14 @@ function searchMovie() {
 	//load the search page
 	// makeAjaxGetRequest('moviezone_admin_main.php', 'cmd_show_search_movie_page', null, updateContent);
 	var movie_id=document.getElementsByName("edit_movie_id")[0].value;
-	alert(movie_id);
+	if(movie_id==""){
+		alert('Please select a movie');
+		return;
+	}
+	var params = '';
+	params += '&movie_id=' + movie_id;
+	
+	makeAjaxGetRequest('moviezone_admin_main.php', 'cmd_movie_edit_form', params, updateContent);
 }
 
 /*Updates the content area if success

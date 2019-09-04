@@ -1,3 +1,28 @@
+<?php
+session_start();
+if(isset($_SESSION['admin'])){
+    header("location:index.php");
+}
+$users=array();
+$users[]=[
+    'u_name'=>'any',
+    'password'=>'webdev2',
+];
+$users[]=[
+    'u_name'=>'asraf_messi',
+    'password'=>'123456',
+];
+if(isset($_POST['user_name']) && isset($_POST['password'])){
+    foreach($users as $user){
+        if($user['u_name']==$_POST['user_name'] && $user['password']==$_POST['password']){
+            $_SESSION['admin']=$_POST['user_name'];
+            header("location:index.php");
+        }else{
+            $error=1;
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +43,15 @@
                     </h3>
                 </div>
                 <div class="card-body">
-                    <form action="">
+                    <form action="login.php" method='post'>
+                        <div class="alert">
+                            <?php
+                            if(isset($error)){
+                                echo '<span style="color:red">Login faild, please try again</span>';
+                            }
+                            ?>
+                            
+                        </div>
                         <div class="form-group">
                             <label for="#user_name">User Name</label>
                             <input type="text" name="user_name" id="user_name" class="form-control">

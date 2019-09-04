@@ -62,6 +62,9 @@ class MovieZoneController {
 			case CMD_MOVIE_FILTER: 
 				$this->handleFilterMovieRequest();
 				break;					
+			case CMD_JOIN_MEMBER: 
+				$this->loadJoinMemberPage();
+				break;					
 			default:
 				$this->handleSelectRandomMovieRequest();
 				break;
@@ -88,7 +91,7 @@ class MovieZoneController {
 		} else {
 			$error = $this->model->getError();
 			if (!empty($error))
-				$this->view->showError($error);
+			$this->view->showError($error);
 		}		
 	}
 	/*Handles filter movie request
@@ -96,13 +99,13 @@ class MovieZoneController {
 	private function handleFilterMovieRequest() {		
 		$condition = array();		
 		if (!empty($_REQUEST['director']))
-			$condition['director_id'] = $_REQUEST['director']; //submitted is director id and not director name
+		$condition['director_id'] = $_REQUEST['director']; //submitted is director id and not director name
 		if (!empty($_REQUEST['actor']))
-			$condition['actor_id'] = $_REQUEST['actor']; //submitted is actor id and not actor name
+		$condition['actor_id'] = $_REQUEST['actor']; //submitted is actor id and not actor name
 		if (!empty($_REQUEST['genre']))
-			$condition['genre_id'] = $_REQUEST['genre']; //submitted is genre id and not genre name
+		$condition['genre_id'] = $_REQUEST['genre']; //submitted is genre id and not genre name
 		if (!empty($_REQUEST['studio']))
-			$condition['studio'] = $_REQUEST['studio']; //submitted is studio id and not studio name
+		$condition['studio'] = $_REQUEST['studio']; //submitted is studio id and not studio name
 		//call the dbAdapter function
 		$movie = $this->model->filtermovie($condition);
 		if ($movie != null) {
@@ -110,8 +113,13 @@ class MovieZoneController {
 		} else {
 			$error = $this->model->getError();
 			if (!empty($error))
-				$this->view->showError($error);
+			$this->view->showError($error);
 		}
+	}
+	/*Loads member join page
+	*/
+	private function loadJoinMemberPage() {
+		$this->view->loadJoinMemberPage();
 	}
 }
 ?>

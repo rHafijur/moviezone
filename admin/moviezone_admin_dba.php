@@ -393,6 +393,68 @@ class AdminDBAdaper {
 		
 	}
 
+	public function updateMovie($data) {
+		$result = null;
+		$this->dbError = null; //reset the error message before any execution
+		if ($this->dbConn != null) {		
+			try {
+				//Make a prepared query so that we can use data binding and avoid SQL injections. 
+				//(modify suit the A2 member table)
+				$rental_period=$data['rental_period'];
+				$dvd_rental_price=$data['dvd_rental_price'];
+				$dvd_purchase_price=$data['dvd_purchase_price'];
+				$dvd_in_stock=$data['dvd_in_stock'];
+				$dvd_rented=$data['dvd_rented'];
+				$blue_rental_price=$data['blue_rental_price'];
+				$blue_purchase_price=$data['blue_purchase_price'];
+				$blue_in_stock=$data['blue_in_stock'];
+				$blue_rented=$data['blue_rented'];
+				$id=$data['movie_id'];
+				$smt = $this->dbConn->prepare(
+					"UPDATE movie set  
+					rental_period ='$rental_period',
+					DVD_rental_price='$dvd_rental_price',
+					DVD_purchase_price='$dvd_purchase_price',
+					numDVD='$dvd_in_stock',
+					numDVDout='$dvd_rented',
+					BluRay_rental_price='$blue_rental_price',
+					BluRay_purchase_price='$blue_purchase_price',
+					numBluRay='$blue_in_stock',
+					numBluRayOut='$blue_rented'
+					where movie_id=$id
+					");	
+				$smt->execute();						  				
+				//Execute the query
+			}catch (PDOException $e) {
+				//Return the error message to the caller
+				$this->dbError = $e->getMessage();
+			}
+		} else {
+			$this->dbError = MSG_ERR_CONNECTION;
+		}	
+	}
+	public function deleteMovie($id) {
+		$result = null;
+		$this->dbError = null; //reset the error message before any execution
+		if ($this->dbConn != null) {		
+			try {
+				//Make a prepared query so that we can use data binding and avoid SQL injections. 
+				//(modify suit the A2 member table)
+				
+				$smt = $this->dbConn->prepare(
+					"DELETE from movie
+					where movie_id=$id
+					");	
+				$smt->execute();						  				
+				//Execute the query
+			}catch (PDOException $e) {
+				//Return the error message to the caller
+				$this->dbError = $e->getMessage();
+			}
+		} else {
+			$this->dbError = MSG_ERR_CONNECTION;
+		}	
+	}
 	/*Select all existing movie from the movie table
 	@return: an array of matched movie
 	*/
@@ -422,6 +484,37 @@ class AdminDBAdaper {
 		return $result;			
 	}
 
+	/*Select a movie from the movie table
+	@param: $id - the id with the movie will be selected
+	@return: an array of matched movie
+	*/
+	public function movieSelectById($id) { 
+		$result = null;
+		$this->dbError = null; //reset the error message before any execution
+		if ($this->dbConn != null) {		
+			try {
+				//Make a prepared query so that we can use data binding and avoid SQL injections. 
+				//(modify suit the A2 member table)
+				$smt = $this->dbConn->prepare(
+				"SELECT * 
+					FROM movie 
+					where movie_id= $id");
+				//Execute the query
+				$smt->execute();
+				$result = $smt->fetchAll(PDO::FETCH_ASSOC);	
+				//use PDO::FETCH_BOTH to have both column name and column index
+				//$result = $sql->fetchAll(PDO::FETCH_BOTH);
+			}catch (PDOException $e) {
+				//Return the error message to the caller
+				$this->dbError = $e->getMessage();
+				$result = null;
+			}
+		} else {
+			$this->dbError = MSG_ERR_CONNECTION;
+		}
+	
+		return $result[0];			
+	}
 	/*Select ramdom movie from the movie table
 	@param: $max - the maximum number of movie will be selected
 	@return: an array of matched movie (default 1 movie)

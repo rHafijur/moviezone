@@ -57,7 +57,7 @@ class MovieZoneAdminModel {
 		
 		return $result;
 	}	
-	/*Filter movie from the database
+	/*Insert a movie to the database
 	*/
 	public function saveMovie($data) {
 
@@ -68,7 +68,38 @@ class MovieZoneAdminModel {
 		$this->error = $this->dbAdapter->lastError();
 		
 	}	
-	
+	/*Update a movie to the database
+	*/
+	public function updateMovie($data) {
+
+		$this->dbAdapter->dbOpen();
+		// var_dump($data);
+		$this->dbAdapter->updateMovie($data);
+		$this->dbAdapter->dbClose();
+		$this->error = $this->dbAdapter->lastError();
+		
+	}	
+	/*Deletes a movie from the database
+	*/
+	public function deleteMovie($id) {
+
+		$this->dbAdapter->dbOpen();
+		$this->dbAdapter->deleteMovie($id);
+		$this->dbAdapter->dbClose();
+		$this->error = $this->dbAdapter->lastError();
+		
+	}	
+	/*Selects a movie from the database
+	*/
+	public function selectMovie($id) {
+		$this->dbAdapter->dbOpen();
+		$result = $this->dbAdapter->movieSelectById($id);
+		$this->dbAdapter->dbClose();
+		$this->error = $this->dbAdapter->lastError();
+		
+		return $result;
+	}
+
 	/*Selects randomly a $max number of movie from the database
 	*/
 	public function selectRandomMovie($max) {

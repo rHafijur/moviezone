@@ -40,6 +40,12 @@ function movieFilterClick() {
 	//load the navigation panel on demand
 	makeAjaxGetRequest('moviezone_main.php', 'cmd_show_top_nav', null, updateTopNav);
 }
+/*Handles join member request
+*/
+function showMemberJoinPage() {
+	//load the navigation panel on demand
+	makeAjaxGetRequest('moviezone_main.php', 'cmd_join_member', null, updateContent);
+}
 
 /*Updates the content area if success
 */

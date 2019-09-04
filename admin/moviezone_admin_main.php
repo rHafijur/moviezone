@@ -7,6 +7,11 @@ This server-side main module interacts with UI to process user's requests
 @Modified by: 
 @Date:05/08/2019
 --------------------------------------------------------------------------------------------------*/
+session_start();
+if(!isset($_SESSION['admin'])){
+	header('location:login.php');
+}
+session_abort();
 require_once('moviezone_admin_config.php'); 
 
 /*initialize the model and view
