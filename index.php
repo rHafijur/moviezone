@@ -34,6 +34,14 @@ require_once('moviezone_main.php');
 			<!-- the top navigation panel is loaded on demand using Ajax (see js code) -->
 		</div>
 		<div id="id_content"></div>
+		<?php
+		session_start();
+		if(isset($_SESSION['success']) && $_SESSION['success']!=''){
+			print '<h3 style="color:green">'.$_SESSION['success'].'</h3>';
+		}
+		$_SESSION['success']='';
+		session_abort();
+		?>
 	</div>
 	<!-- footer area -->
 	<footer>Copyright &copy; MD ASHRAFUL ALAM REDOY </footer>

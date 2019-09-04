@@ -65,10 +65,28 @@ class MovieZoneController {
 			case CMD_JOIN_MEMBER: 
 				$this->loadJoinMemberPage();
 				break;					
+			case CMD_SAVE_MEMBER: 
+				$this->saveMember();
+				break;					
 			default:
 				$this->handleSelectRandomMovieRequest();
 				break;
 		}
+	}
+	/*insert a member to the database
+	*/
+	private function saveMember() {
+		$movie = $this->model->saveMember($_POST);
+			$error = $this->model->getError();
+			if (!empty($error)){
+				$this->view->showError($error);
+			}else{
+				session_start();
+				$_SESSION['success']='Member Joined successfully';
+				session_abort();
+				header('location:index.php');
+			}
+				
 	}
 	/*Handles select all movie request
 	*/

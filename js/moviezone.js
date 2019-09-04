@@ -45,6 +45,7 @@ function movieFilterClick() {
 function showMemberJoinPage() {
 	//load the navigation panel on demand
 	makeAjaxGetRequest('moviezone_main.php', 'cmd_join_member', null, updateContent);
+	document.getElementById('id_topnav').style.display = "none";
 }
 
 /*Updates the content area if success

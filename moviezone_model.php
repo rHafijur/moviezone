@@ -46,6 +46,23 @@ class MovieZoneModel {
 		
 		return $result;
 	}
+	/*Insert a member to the database
+	*/
+	public function saveMember($data) {
+		var_dump($data);
+		if($data['password']!=$data['con_pass']){
+			$this->error="Password and confirm password did not match";
+			return;
+		}
+		if(!isset($data['magazine'])){
+			$data['magazine']=0;
+		}
+		$this->dbAdapter->dbOpen();
+		$this->dbAdapter->saveMember($data['surname'],$data['other_name'],'email',$data['email'],$data['mobile'],$data['landline'],$data['occupation'],$data['magazine'],$data['street'],$data['suburb'],$data['post_code'],$data['username'],$data['password'],date('Y-m-d'));
+		$this->dbAdapter->dbClose();
+		$this->error = $this->dbAdapter->lastError();
+		
+	}
 	
 	/*Filter movie from the database
 	*/

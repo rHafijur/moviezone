@@ -342,6 +342,33 @@ class DBAdaper {
 	
 		return $result;			
 	}
+	/*Select all existing states from the genre table
+	@return: an array of genre with column name as the keys;
+	*/
+	public function saveMember($surname,$other_name,$method,$email,$mobile,$landline,$occupation,$magazine=0,$street,$suburb,$post_code,$username,$password,$date) {
+		$result = null;
+		$this->dbError = null; //reset the error message before any execution
+		if ($this->dbConn != null) {		
+			try {
+				//Make a prepared query so that we can use data binding and avoid SQL injections. 
+				//(modify suit the A2 member table)
+				$smt = $this->dbConn->prepare("INSERT into member 
+				(surname,other_name,contact_method,email,mobile,landline,magazine,street,suburb,postcode,username,password,occupation,join_date) values
+				('$surname','$other_name','$method','$email','$mobile','$landline',$magazine,'$street','$suburb',$post_code,'$username','$password','$occupation','$date')
+				");							  
+				//Execute the query
+				$smt->execute();
+				//use PDO::FETCH_BOTH to have both column name and column index
+				//$result = $sql->fetchAll(PDO::FETCH_BOTH);
+			}catch (PDOException $e) {
+				//Return the error message to the caller
+				$this->dbError = $e->getMessage();
+			}
+		} else {
+			$this->dbError = MSG_ERR_CONNECTION;
+		}
+	
+	}
 	
 
 	/*Select all existing director from the  director table
