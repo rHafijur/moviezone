@@ -96,7 +96,7 @@ class MovieZoneAdminView {
 		print "<h2>Admin Home</h2><h3>".$_SESSION['admin']."</h3><h4>$msg</h4>";
 		$_SESSION['success_msg']='';
 	}
-	/*Displays Admin home
+	/*Displays all movie list
 	*/
 	public function showMovieSearchPage($movie) {
 		$count= count($movie);
@@ -108,6 +108,20 @@ class MovieZoneAdminView {
 		$html=file_get_contents('html/select_movie.html');
 		$html= str_replace('__count__',$count,$html);
 		$html= str_replace('__movie__',$mov,$html);
+		print $html;
+	}
+	/*Displays all movie list
+	*/
+	public function showMemberSearchPage($members) {
+		$count= count($members);
+		$mem="";
+		foreach ($members as $m) {
+			$mem.="<option value='".$m['member_id']."'>".$m['surname']."-".$m['other_name']."</option>";
+		}
+
+		$html=file_get_contents('html/select_member.html');
+		$html= str_replace('__count__',$count,$html);
+		$html= str_replace('__member__',$mem,$html);
 		print $html;
 	}
 	/*Displays Movie insertion form
@@ -157,6 +171,29 @@ class MovieZoneAdminView {
 		$formHtml=str_replace("__bpp__", $movie['BluRay_purchase_price'], $formHtml);
 		$formHtml=str_replace("__bis__", $movie['numBluRay'], $formHtml);
 		$formHtml=str_replace("__br__", $movie['numBluRayOut'], $formHtml);
+		// $formHtml=str_replace("__director__", $dir, $formHtml);
+		// $formHtml=str_replace("__actor__", $act, $formHtml);
+		// $formHtml=str_replace("__studio__", $std, $formHtml);
+		print $formHtml;
+	}
+	public function editMemberPage($member) {
+		// var_dump($member);
+		// exit();
+
+		$formHtml= file_get_contents('html/edit_member_form.html');
+		$formHtml=str_replace("__member_id__", $member['member_id'], $formHtml);
+		$formHtml=str_replace("__surname__", $member['surname'], $formHtml);
+		$formHtml=str_replace("__other_name__", $member['other_name'], $formHtml);
+		$formHtml=str_replace("__username__", $member['username'], $formHtml);
+		$formHtml=str_replace("__join_date__", $member['join_date'], $formHtml);
+		$formHtml=str_replace("__email__", $member['email'], $formHtml);
+		$formHtml=str_replace("__mobile__", $member['mobile'], $formHtml);
+		$formHtml=str_replace("__landline__", $member['landline'], $formHtml);
+		$formHtml=str_replace("__street__", $member['street'], $formHtml);
+		$formHtml=str_replace("__suburb__", $member['suburb'], $formHtml);
+		$formHtml=str_replace("__postcode__", $member['postcode'], $formHtml);
+		$formHtml=str_replace("__occupation__", $member['occupation'], $formHtml);
+		$formHtml=str_replace("__password__", $member['password'], $formHtml);
 		// $formHtml=str_replace("__director__", $dir, $formHtml);
 		// $formHtml=str_replace("__actor__", $act, $formHtml);
 		// $formHtml=str_replace("__studio__", $std, $formHtml);

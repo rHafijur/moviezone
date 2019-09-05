@@ -76,6 +76,18 @@ class MovieZoneAdminController {
 			case CMD_DELETE_MOVIE: 
 				$this->deleteMovieRequest();
 				break;					
+			case CMD_SHOW_SEARCH_MEMBER_PAGE: 
+				$this->handleMemberSearchPageRequest();
+				break;					
+			case CMD_MEMBER_EDIT_FORM: 
+				$this->editMemberFormRequest();
+				break;					
+			case CMD_UPDATE_MEMBER: 
+				$this->updateMemberRequest();
+				break;					
+			case CMD_DELETE_MEMBER: 
+				$this->deleteMemberRequest();
+				break;					
 			default:
 				$this->loadAdminHome();
 				break;
@@ -127,6 +139,22 @@ class MovieZoneAdminController {
 			}
 
 	}
+	/*Updates member
+	*/
+	private function updateMemberRequest() {
+			$data=$_POST;
+			$this->model->updateMember($data);
+			$error = $this->model->getError();
+			if (!empty($error)){
+				$this->view->showError($error);	
+			}else{
+				session_start();
+				$_SESSION['success_msg']="Member Updated Successfully";
+				// session_destroy();
+				header("Location: index.php");
+			}
+
+	}
 	/*Deletes Movie
 	*/
 	private function deleteMovieRequest() {
@@ -143,11 +171,36 @@ class MovieZoneAdminController {
 			}
 
 	}
+	/*Deletes Member
+	*/
+	private function deleteMemberRequest() {
+			$id=$_POST['member_id'];
+			$this->model->deleteMember($id);
+			$error = $this->model->getError();
+			if (!empty($error)){
+				$this->view->showError($error);	
+			}else{
+				session_start();
+				$_SESSION['success_msg']="Member Deleted Successfully";
+				// session_destroy();
+				header("Location: index.php");
+			}
+
+	}
 	/*Shows Movie insertion form
 	*/
 	private function handleMovieSearchPageRequest() {
 			$movie = $this->model->selectAllMovie();
 			$this->view->showMovieSearchPage($movie);
+			$error = $this->model->getError();
+			if (!empty($error))
+				$this->view->showError($error);	
+	}
+	/*Shows Movie insertion form
+	*/
+	private function handleMemberSearchPageRequest() {
+			$member = $this->model->selectAllMember();
+			$this->view->showMemberSearchPage($member);
 			$error = $this->model->getError();
 			if (!empty($error))
 				$this->view->showError($error);	
@@ -158,6 +211,18 @@ class MovieZoneAdminController {
 			$movie_id=$_GET['movie_id'];
 			$movie = $this->model->selectMovie($movie_id);
 			$this->view->editMoviePage($movie);
+			$error = $this->model->getError();
+			if (!empty($error))
+				$this->view->showError($error);	
+	}
+	/*Shows member Edit form
+	*/
+	private function editMemberFormRequest() {
+			$member_id=$_GET['member_id'];
+			$member = $this->model->selectMember($member_id);
+			// var_dump($member);
+			// exit();
+			$this->view->editMemberPage($member);
 			$error = $this->model->getError();
 			if (!empty($error))
 				$this->view->showError($error);	

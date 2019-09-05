@@ -1,0 +1,100 @@
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    Edit Member
+                </div>
+                <div class="card-body">
+                    <form action="moviezone_admin_main.php?request=cmd_update_member" method="post">
+                        <input type="hidden" name="member_id" value="__member_id__">
+                        <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">member id :__member_id__</h5>
+                                </div>
+                            <div class="card-body">
+                                    <div class="form-group">
+                                            <label>Surname*</label>
+                                            <input type="text" value="__surname__" name="surname"  class="form-control" required>
+                                    </div>
+                                <div class="form-group">
+                                    <label>Other name*</label>
+                                    <input type="text" value="__other_name__" name="other_name" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>User name</label>
+                                    <input type="text" value="__username__" class="form-control" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="text" value="__password__" name="password" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Contact</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Email*</label>
+                                    <input type="Email" value="__email__" name="email" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Mobile</label>
+                                    <input type="number" value="__mobile__" name="mobile" class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label>Land line</label>
+                                    <input type="number" value="__landline__" name="landline" class="form-control" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Occupation</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Occupation*</label>
+                                    <input type="text" value="__occupation__" name="occupation" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Address</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label>Do you want to receive a monthly magazine?*</label>
+                                    <input type="checkbox" value="1" name="magazine"  class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label>Street address*</label>
+                                    <input type="text" value="__street__" name="street" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Subrub and State*</label>
+                                    <input type="text" value="__suburb__" name="suburb" class="form-control" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Post code*</label>
+                                    <input type="number" value="__postcode__" name="post_code" class="form-control" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                          <button class="btn btn-success">Update member</button>
+                        </div>
+                    </form>
+                    <form action="moviezone_admin_main.php?request=cmd_delete_member" method="POST">
+                        <input type="hidden" name="member_id"  value="__member_id__">
+                        <div class="form-group">
+                          <button class="btn btn-danger">Delete member</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

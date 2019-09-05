@@ -433,6 +433,37 @@ class AdminDBAdaper {
 			$this->dbError = MSG_ERR_CONNECTION;
 		}	
 	}
+	public function updateMember($id,$surname,$other_name,$email,$mobile,$landline,$occupation,$magazine,$street,$suburb,$post_code,$password) {
+		$result = null;
+		$this->dbError = null; //reset the error message before any execution
+		if ($this->dbConn != null) {		
+			try {
+				
+				$smt = $this->dbConn->prepare(
+					"UPDATE member set  
+					surname ='$surname',
+					other_name='$other_name',
+					email='$email',
+					mobile='$mobile',
+					landline='$landline',
+					occupation='$occupation',
+					magazine='$magazine',
+					street='$street',
+					suburb='$suburb',
+					postcode='$post_code',
+					password='$password'
+					where member_id=$id
+					");	
+				$smt->execute();						  				
+				//Execute the query
+			}catch (PDOException $e) {
+				//Return the error message to the caller
+				$this->dbError = $e->getMessage();
+			}
+		} else {
+			$this->dbError = MSG_ERR_CONNECTION;
+		}	
+	}
 	public function deleteMovie($id) {
 		$result = null;
 		$this->dbError = null; //reset the error message before any execution
@@ -444,6 +475,28 @@ class AdminDBAdaper {
 				$smt = $this->dbConn->prepare(
 					"DELETE from movie
 					where movie_id=$id
+					");	
+				$smt->execute();						  				
+				//Execute the query
+			}catch (PDOException $e) {
+				//Return the error message to the caller
+				$this->dbError = $e->getMessage();
+			}
+		} else {
+			$this->dbError = MSG_ERR_CONNECTION;
+		}	
+	}
+	public function deleteMember($id) {
+		$result = null;
+		$this->dbError = null; //reset the error message before any execution
+		if ($this->dbConn != null) {		
+			try {
+				//Make a prepared query so that we can use data binding and avoid SQL injections. 
+				//(modify suit the A2 member table)
+				
+				$smt = $this->dbConn->prepare(
+					"DELETE from member
+					where member_id=$id
 					");	
 				$smt->execute();						  				
 				//Execute the query
@@ -483,6 +536,34 @@ class AdminDBAdaper {
 	
 		return $result;			
 	}
+	/*Select all existing members from the member table
+	@return: an array of member
+	*/
+	public function memberSelectAll() {
+		$result = null;
+		$this->dbError = null; //reset the error message before any execution
+		if ($this->dbConn != null) {		
+			try {
+				//Make a prepared query so that we can use data binding and avoid SQL injections. 
+				//(modify suit the A2 member table)
+				$smt = $this->dbConn->prepare(
+					'SELECT * FROM member');							  				
+				//Execute the query
+				$smt->execute();
+				$result = $smt->fetchAll(PDO::FETCH_ASSOC);	
+				//use PDO::FETCH_BOTH to have both column name and column index
+				//$result = $sql->fetchAll(PDO::FETCH_BOTH);
+			}catch (PDOException $e) {
+				//Return the error message to the caller
+				$this->dbError = $e->getMessage();
+				$result = null;
+			}
+		} else {
+			$this->dbError = MSG_ERR_CONNECTION;
+		}
+	
+		return $result;			
+	}
 
 	/*Select a movie from the movie table
 	@param: $id - the id with the movie will be selected
@@ -499,6 +580,37 @@ class AdminDBAdaper {
 				"SELECT * 
 					FROM movie 
 					where movie_id= $id");
+				//Execute the query
+				$smt->execute();
+				$result = $smt->fetchAll(PDO::FETCH_ASSOC);	
+				//use PDO::FETCH_BOTH to have both column name and column index
+				//$result = $sql->fetchAll(PDO::FETCH_BOTH);
+			}catch (PDOException $e) {
+				//Return the error message to the caller
+				$this->dbError = $e->getMessage();
+				$result = null;
+			}
+		} else {
+			$this->dbError = MSG_ERR_CONNECTION;
+		}
+	
+		return $result[0];			
+	}
+	/*Select a movie from the movie table
+	@param: $id - the id with the movie will be selected
+	@return: an array of matched movie
+	*/
+	public function memberSelectById($id) { 
+		$result = null;
+		$this->dbError = null; //reset the error message before any execution
+		if ($this->dbConn != null) {		
+			try {
+				//Make a prepared query so that we can use data binding and avoid SQL injections. 
+				//(modify suit the A2 member table)
+				$smt = $this->dbConn->prepare(
+				"SELECT * 
+					FROM member 
+					where member_id= $id");
 				//Execute the query
 				$smt->execute();
 				$result = $smt->fetchAll(PDO::FETCH_ASSOC);	

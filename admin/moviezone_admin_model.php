@@ -46,6 +46,16 @@ class MovieZoneAdminModel {
 		
 		return $result;
 	}
+	/*Selects all members from the database
+	*/
+	public function selectAllMember() {
+		$this->dbAdapter->dbOpen();
+		$result = $this->dbAdapter->memberSelectAll();
+		$this->dbAdapter->dbClose();
+		$this->error = $this->dbAdapter->lastError();
+		
+		return $result;
+	}
 	
 	/*Filter movie from the database
 	*/
@@ -79,6 +89,20 @@ class MovieZoneAdminModel {
 		$this->error = $this->dbAdapter->lastError();
 		
 	}	
+	/*Update a mer to the database
+	*/
+	public function updateMember($data) {
+
+		$this->dbAdapter->dbOpen();
+		// var_dump($data);
+		if(!isset($data['magazine'])){
+			$data['magazine']=0;
+		}
+		$this->dbAdapter->updateMember($data['member_id'],$data['surname'],$data['other_name'],$data['email'],$data['mobile'],$data['landline'],$data['occupation'],$data['magazine'],$data['street'],$data['suburb'],$data['post_code'],$data['password']);
+		$this->dbAdapter->dbClose();
+		$this->error = $this->dbAdapter->lastError();
+		
+	}	
 	/*Deletes a movie from the database
 	*/
 	public function deleteMovie($id) {
@@ -89,11 +113,33 @@ class MovieZoneAdminModel {
 		$this->error = $this->dbAdapter->lastError();
 		
 	}	
+	/*Deletes a member from the database
+	*/
+	public function deleteMember($id) {
+
+		$this->dbAdapter->dbOpen();
+		$this->dbAdapter->deleteMember($id);
+		$this->dbAdapter->dbClose();
+		$this->error = $this->dbAdapter->lastError();
+		
+	}	
 	/*Selects a movie from the database
 	*/
 	public function selectMovie($id) {
 		$this->dbAdapter->dbOpen();
 		$result = $this->dbAdapter->movieSelectById($id);
+		$this->dbAdapter->dbClose();
+		$this->error = $this->dbAdapter->lastError();
+		
+		return $result;
+	}
+	/*Selects a member from the database
+	*/
+	public function selectMember($id) {
+		$this->dbAdapter->dbOpen();
+		$result = $this->dbAdapter->memberSelectById($id);
+		// var_dump($result);
+		// 	exit();
 		$this->dbAdapter->dbClose();
 		$this->error = $this->dbAdapter->lastError();
 		

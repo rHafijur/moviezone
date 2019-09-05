@@ -52,6 +52,12 @@ function searchPage() {
 	//load the search page
 	makeAjaxGetRequest('moviezone_admin_main.php', 'cmd_show_search_movie_page', null, updateContent);
 }
+/*Handles member search page
+*/
+function searchMemberPage() {
+	//load the search page
+	makeAjaxGetRequest('moviezone_admin_main.php', 'cmd_show_search_member_page', null, updateContent);
+}
 function searchMovie() {
 	//load the search page
 	// makeAjaxGetRequest('moviezone_admin_main.php', 'cmd_show_search_movie_page', null, updateContent);
@@ -64,6 +70,17 @@ function searchMovie() {
 	params += '&movie_id=' + movie_id;
 	
 	makeAjaxGetRequest('moviezone_admin_main.php', 'cmd_movie_edit_form', params, updateContent);
+}
+function searchMember() {
+	var member_id=document.getElementsByName("edit_member_id")[0].value;
+	if(member_id==""){
+		alert('Please select a member');
+		return;
+	}
+	var params = '';
+	params += '&member_id=' + member_id;
+	
+	makeAjaxGetRequest('moviezone_admin_main.php', 'cmd_member_edit_form', params, updateContent);
 }
 
 /*Updates the content area if success

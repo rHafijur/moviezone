@@ -21,10 +21,14 @@ define ('CMD_MOVIE_SELECT_ALL', 'cmd_movie_select_all');
 define ('CMD_MOVIE_FILTER', 'cmd_movie_filter'); //filter movie by submitted parameters
 define ('CMD_MOVIE_FORM', 'cmd_movie_form'); //display movie form
 define ('CMD_MOVIE_EDIT_FORM', 'cmd_movie_edit_form'); //display movie form
+define ('CMD_MEMBER_EDIT_FORM', 'cmd_member_edit_form'); //display movie form
 define ('CMD_SAVE_NEW_MOVIE', 'cmd_save_new_movie'); //Save a new movie to the database
 define ('CMD_UPDATE_MOVIE', 'cmd_update_movie'); //update movie to the database
-define ('CMD_DELETE_MOVIE', 'cmd_delete_movie'); //update movie to the database
+define ('CMD_UPDATE_MEMBER', 'cmd_update_member'); //update member to the database
+define ('CMD_DELETE_MOVIE', 'cmd_delete_movie'); //delete movie from the database
+define ('CMD_DELETE_MEMBER', 'cmd_delete_member'); //delete member from the database
 define ('CMD_SHOW_SEARCH_MOVIE_PAGE', 'cmd_show_search_movie_page'); //Show Search movie page
+define ('CMD_SHOW_SEARCH_MEMBER_PAGE', 'cmd_show_search_member_page'); //Show Search member page
 
 //define error messages
 define ('errSuccess', 'SUCCESS'); //no error, command is successfully executed
