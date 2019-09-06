@@ -1,9 +1,15 @@
 /*Use onload event to load the page with random cars
 */
 window.addEventListener("load", function(){
-    makeAjaxGetRequest('moviezone_main.php', 'cmd_movie_select_random', null, updateContent);
+	if(window.location.search.substr(1)=='page=add_member'){
+		makeAjaxGetRequest('moviezone_main.php', 'cmd_join_member', null, updateContent);
+		document.getElementById('id_topnav').style.display = "none";
+	}else{
+	makeAjaxGetRequest('moviezone_main.php', 'cmd_movie_select_random', null, updateContent);
 	//show the top navigation panel
 	document.getElementById('id_topnav').style.display = "none";
+	}
+    
 });
 
 /*Handles onchange event to filter the car database

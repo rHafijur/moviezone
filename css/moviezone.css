@@ -50,7 +50,7 @@ div#id_right {
 div#id_content {
     padding: 1em;
     overflow: hidden;
-	float: left;
+	/* float: left; */
 	clear: both;
 }
 

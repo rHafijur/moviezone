@@ -15,6 +15,9 @@ require_once('moviezone_main.php');
 	<link rel="stylesheet" type="text/css" href="css/moviezone.css">
 	<script src="js/ajax.js"></script>
 	<script src="js/moviezone.js"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -32,6 +35,16 @@ require_once('moviezone_main.php');
 		<!-- top navigation area -->
 		<div id="id_topnav">			
 			<!-- the top navigation panel is loaded on demand using Ajax (see js code) -->
+			
+		</div>
+		<div>
+		<?php
+			session_start();
+			if(isset($_SESSION['member'])){
+				print "<h2>Member: ".$_SESSION['member']."</h2>";
+			}
+			session_abort();
+			?>
 		</div>
 		<div id="id_content"></div>
 		<?php

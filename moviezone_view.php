@@ -116,6 +116,7 @@ class MovieZoneView {
 		$tagline = $movie['tagline'];		
 		$genre = $movie['genre'];
 		$title = $movie['title'];
+		$book_button="";
 		print "
 		<div class='movie_card'>	
 			<div class='title'>$title</div>

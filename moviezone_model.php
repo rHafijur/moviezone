@@ -49,7 +49,7 @@ class MovieZoneModel {
 	/*Insert a member to the database
 	*/
 	public function saveMember($data) {
-		var_dump($data);
+		// var_dump($data);
 		if($data['password']!=$data['con_pass']){
 			$this->error="Password and confirm password did not match";
 			return;
@@ -80,6 +80,16 @@ class MovieZoneModel {
 	public function selectRandomMovie($max) {
 		$this->dbAdapter->dbOpen();
 		$result = $this->dbAdapter->movieSelectRandom($max);
+		$this->dbAdapter->dbClose();
+		$this->error = $this->dbAdapter->lastError();
+		
+		return $result;
+	}
+	/*Selects randomly a $max number of movie from the database
+	*/
+	public function authenticate($data) {
+		$this->dbAdapter->dbOpen();
+		$result = $this->dbAdapter->findMember($data);
 		$this->dbAdapter->dbClose();
 		$this->error = $this->dbAdapter->lastError();
 		

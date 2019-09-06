@@ -67,7 +67,10 @@ class MovieZoneController {
 				break;					
 			case CMD_SAVE_MEMBER: 
 				$this->saveMember();
-				break;					
+				break;
+			case CMD_AUTHENTICATION: 
+				$this->authenticate();
+				break;				
 			default:
 				$this->handleSelectRandomMovieRequest();
 				break;
@@ -85,6 +88,27 @@ class MovieZoneController {
 				$_SESSION['success']='Member Joined successfully';
 				session_abort();
 				header('location:index.php');
+			}
+				
+	}
+	/*authenticate a member
+	*/
+	private function authenticate() {
+		$user = $this->model->authenticate($_POST);
+			$error = $this->model->getError();
+			if (!empty($error)){
+				$this->view->showError($error);
+			}else{
+				if(count($user)>0){
+					session_start();
+					$_SESSION['member']=$user[0]['username'];
+					// session_abort();
+					// var_dump($_SESSION['member']);
+					// exit();
+					header('location:index.php');
+				}else{
+					header('location:member_login.php');
+				}
 			}
 				
 	}

@@ -280,6 +280,33 @@ class DBAdaper {
 	
 		return $result;			
 	}
+	public function findMember($data) { 
+		$result = null;
+		$uname=$data['user_name'];
+		$password=$data['password'];
+		$this->dbError = null; //reset the error message before any execution
+		if ($this->dbConn != null) {		
+			try {
+				//Make a prepared query so that we can use data binding and avoid SQL injections. 
+				//(modify suit the A2 member table)
+				$smt = $this->dbConn->prepare(
+				"SELECT * from member where
+					username='$uname' and password='$password'");
+				//Execute the query
+				$smt->execute();
+				$result = $smt->fetchAll(PDO::FETCH_ASSOC);	
+				//use PDO::FETCH_BOTH to have both column name and column index
+				//$result = $sql->fetchAll(PDO::FETCH_BOTH);
+			}catch (PDOException $e) {
+				//Return the error message to the caller
+				$this->dbError = $e->getMessage();
+				$result = null;
+			}
+		} else {
+			$this->dbError = MSG_ERR_CONNECTION;
+		}
+		return $result;			
+	}
 	
 	/*Select an existing movie from the movie table
 	@param $condition: is an associative array of movie's details you want to match
