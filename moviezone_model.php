@@ -85,6 +85,18 @@ class MovieZoneModel {
 		
 		return $result;
 	}
+	public function checkout() {
+		$ids="";
+		if(isset($_COOKIE['movies'])){
+			$ids=implode(", ",json_decode($_COOKIE['movies']));
+		}
+		$this->dbAdapter->dbOpen();
+		$result = $this->dbAdapter->movieSelectBooked($ids);
+		$this->dbAdapter->dbClose();
+		$this->error = $this->dbAdapter->lastError();
+		
+		return $result;
+	}
 	/*Selects randomly a $max number of movie from the database
 	*/
 	public function authenticate($data) {

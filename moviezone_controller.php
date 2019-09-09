@@ -71,6 +71,17 @@ class MovieZoneController {
 			case CMD_AUTHENTICATION: 
 				$this->authenticate();
 				break;				
+			case CMD_BOOK_MOVIE: 
+				$stat= $this->bookMovie();
+				if($stat==-1){
+					header('location:index.php?page=checkout');
+				}else{
+					header('location:index.php');
+				}
+				break;				
+			case CMD_CHECKOUT: 
+				$this->checkout();
+				break;				
 			default:
 				$this->handleSelectRandomMovieRequest();
 				break;
@@ -136,6 +147,16 @@ class MovieZoneController {
 			$this->view->showError($error);
 		}		
 	}
+	private function checkout() {
+		$movie = $this->model->checkout();
+		if ($movie != null) {
+			$this->view->bookMovies($movie);
+		} else {
+			$error = $this->model->getError();
+			if (!empty($error))
+			$this->view->showError($error);
+		}		
+	}
 	/*Handles filter movie request
 	*/
 	private function handleFilterMovieRequest() {		
@@ -157,6 +178,23 @@ class MovieZoneController {
 			if (!empty($error))
 			$this->view->showError($error);
 		}
+	}
+	private function bookMovie(){
+		$movies=[];
+		if(isset($_COOKIE['movies'])){
+			$movies=$_COOKIE['movies'];
+			$movies=json_decode($movies);
+			if(count($movies)>4){
+				 return -1;
+			}
+			foreach($movies as $movie){
+				if($movie==$_GET['movie_id']){
+					return;
+				}
+			}
+		}
+		$movies[]=$_GET['movie_id'];
+		setcookie('movies', json_encode($movies), time() + (86400 * 30));
 	}
 	/*Loads member join page
 	*/

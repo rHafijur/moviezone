@@ -22,6 +22,8 @@ define ('CMD_MOVIE_FILTER', 'cmd_movie_filter'); //filter movie by submitted par
 define ('CMD_JOIN_MEMBER', 'cmd_join_member'); //loads member join page
 define ('CMD_SAVE_MEMBER', 'cmd_save_member'); //insert member data to the database
 define ('CMD_AUTHENTICATION', 'cmd_authentication'); //create auth request
+define ('CMD_BOOK_MOVIE', 'cmd_book_movie'); //create auth request
+define ('CMD_CHECKOUT', 'cmd_checkout'); //create auth request
 
 //define error messages
 define ('errSuccess', 'SUCCESS'); //no error, command is successfully executed

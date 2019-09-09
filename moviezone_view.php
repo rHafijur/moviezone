@@ -92,11 +92,60 @@ class MovieZoneView {
 			}
 		}
 	}
+	public function bookMovies($movie_array) {
+		if (!empty($movie_array)) {
+			print count($movie_array)." movies selected <br>
+								<h3>Checkout</h3>
+								This module is currently being built and has not yet been completed
+You have chosen the following movies to be booked/purchased:
+			";
+			foreach ($movie_array as $movie) {
+				$this->printBookedMovieInHtml($movie);
+			}
+		}
+	}
 	/*Displays an array of movie
 	*/
 	public function loadJoinMemberPage() {
 		$html=file_get_contents("html/join_member.html");
 		print $html;
+	}
+
+	private function printBookedMovieInHtml($movie){
+		if (empty($movie['thumbpath'])) {
+			$photo = _MOVIE_PHOTO_FOLDER_."default.jpg";
+		} else {
+			$photo = _MOVIE_PHOTO_FOLDER_.$movie['thumbpath'];
+		}
+		$movie_id = $movie['movie_id'];
+		$title = $movie['title'];
+		$year = $movie['year'];
+		$tagline = $movie['tagline'];
+		print '
+		<div class="row">
+	<div class="col">
+	<div class="card">
+		<div class="card-header">
+			<h3 class="card-title">Movie '.$movie_id.' information</h3>
+		</div>
+		<div class="card-body">
+			<div class="row">
+				<div class="col-9">
+					<ul class="list-group">
+						<li class="list-group-item"><storng>Title:</strong> '.$title.'</li>
+						<li class="list-group-item"><storng>Year:</strong> '.$year.'</li>
+						<li class="list-group-item"><storng>Tagline:</strong> '.$tagline.'</li>
+					</ul>
+				</div>
+				<div class="col-3">
+				<img src="'.$photo.'" class="img-fluid">
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+		';
 	}
 	
 	/*Format a movie into html
@@ -117,9 +166,30 @@ class MovieZoneView {
 		$genre = $movie['genre'];
 		$title = $movie['title'];
 		$book_button="";
+		$btn_text='Rent/Purchase';
+		if(isset($_COOKIE['movies'])){
+			$movs=json_decode($_COOKIE['movies']);
+			foreach($movs as $mov){
+				if($mov==$movie['movie_id']){
+					$btn_text="Already selected";
+					break;
+				}
+			}
+		}
+		if(!isset($_SESSION)){
+			session_start();
+		}
+		if(isset($_SESSION['member'])){
+			$book_button='
+			<a href="moviezone_main.php?request=cmd_book_movie&movie_id='.$movie['movie_id'].'">
+				<button class="btn-secondary">'.$btn_text.'</button>
+			</a>
+			';
+		}
 		print "
 		<div class='movie_card'>	
 			<div class='title'>$title</div>
+			".$book_button."
 			<div class='photo_container'>
 				<img src= '$photo' alt='car photo' class='photo'>
 			</div>
