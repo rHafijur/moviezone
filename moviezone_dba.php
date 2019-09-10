@@ -230,7 +230,7 @@ class DBAdaper {
 				//Make a prepared query so that we can use data binding and avoid SQL injections. 
 				//(modify suit the A2 member table)
 				$smt = $this->dbConn->prepare(
-					'SELECT movie_id, title, thumbpath, studio, director, star1,star2,star3,costar1,costar2,costar3, year, tagline, genre FROM movie_detail_view');							  				
+					'SELECT * FROM movie_detail_view');							  				
 				//Execute the query
 				$smt->execute();
 				$result = $smt->fetchAll(PDO::FETCH_ASSOC);	
@@ -260,7 +260,7 @@ class DBAdaper {
 				//Make a prepared query so that we can use data binding and avoid SQL injections. 
 				//(modify suit the A2 member table)
 				$smt = $this->dbConn->prepare(
-				"SELECT movie_id, title, thumbpath, studio, director, star1,star2,star3,costar1,costar2,costar3, year, tagline, genre 
+				"SELECT * 
 					FROM movie_detail_view 
 					-- ORDER BY RAND() 
 					ORDER BY year DESC

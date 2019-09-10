@@ -167,24 +167,34 @@ You have chosen the following movies to be booked/purchased:
 		$title = $movie['title'];
 		$book_button="";
 		$btn_text='Rent/Purchase';
-		if(isset($_COOKIE['movies'])){
-			$movs=json_decode($_COOKIE['movies']);
-			foreach($movs as $mov){
-				if($mov==$movie['movie_id']){
-					$btn_text="Already selected";
-					break;
-				}
-			}
-		}
 		if(!isset($_SESSION)){
 			session_start();
 		}
 		if(isset($_SESSION['member'])){
+			if($movie['numDVD']==0){
+				$btn_text='Onliy BluRay available';
+			}elseif($movie['numBluRay']==0){
+				$btn_text='Onliy DVD available';
+			}
+			if(isset($_COOKIE['movies'])){
+				$movs=json_decode($_COOKIE['movies']);
+				foreach($movs as $mov){
+					if($mov==$movie['movie_id']){
+						$btn_text="Already selected";
+						break;
+					}
+				}
+			}
 			$book_button='
 			<a href="moviezone_main.php?request=cmd_book_movie&movie_id='.$movie['movie_id'].'">
 				<button class="btn-secondary">'.$btn_text.'</button>
 			</a>
 			';
+			if($movie['numDVD']==0&&$movie['numBluRay']==0){
+				$book_button='
+				<button class="btn-secondary">Movie Not available</button>
+				';
+			}
 		}
 		print "
 		<div class='movie_card'>	
