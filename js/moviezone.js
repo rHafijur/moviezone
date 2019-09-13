@@ -9,7 +9,8 @@ window.addEventListener("load", function(){
 		document.getElementById('id_topnav').style.display = "none";
 	}
 	else{
-	makeAjaxGetRequest('moviezone_main.php', 'cmd_movie_select_random', null, updateContent);
+	makeAjaxGetRequest('moviezone_main.php', 'cmd_home', null, updateContent);
+	// makeAjaxGetRequest('moviezone_main.php', 'cmd_movie_select_random', null, updateContent);
 	//show the top navigation panel
 	document.getElementById('id_topnav').style.display = "none";
 	}

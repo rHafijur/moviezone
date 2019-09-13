@@ -82,10 +82,28 @@ class MovieZoneController {
 			case CMD_CHECKOUT: 
 				$this->checkout();
 				break;				
+			case CMD_HOME: 
+				$this->home();
+				break;				
+			case CMD_CONTACT: 
+				$this->contact();
+				break;				
+			case CMD_TECHZONE: 
+				$this->techzone();
+				break;				
 			default:
 				$this->handleSelectRandomMovieRequest();
 				break;
 		}
+	}
+	private function home(){
+		$this->view->showHome();
+	}
+	private function contact(){
+		$this->view->showContact();
+	}
+	private function techzone(){
+		$this->view->showTechzone();
 	}
 	/*insert a member to the database
 	*/

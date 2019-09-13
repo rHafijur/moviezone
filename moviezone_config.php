@@ -24,6 +24,9 @@ define ('CMD_SAVE_MEMBER', 'cmd_save_member'); //insert member data to the datab
 define ('CMD_AUTHENTICATION', 'cmd_authentication'); //create auth request
 define ('CMD_BOOK_MOVIE', 'cmd_book_movie'); //create auth request
 define ('CMD_CHECKOUT', 'cmd_checkout'); //create auth request
+define ('CMD_HOME', 'cmd_home'); //home page request
+define ('CMD_CONTACT', 'cmd_contact'); //contact page request
+define ('CMD_TECHZONE', 'cmd_techzone'); //techzone page request
 
 //define error messages
 define ('errSuccess', 'SUCCESS'); //no error, command is successfully executed

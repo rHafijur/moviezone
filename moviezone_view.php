@@ -18,7 +18,15 @@ class MovieZoneView {
 	*/		
 	public function __destruct() {		
 	}
-	
+	public function showHome(){
+		print file_get_contents('html/home.html');
+	}
+	public function showContact(){
+		print file_get_contents('html/home.html');
+	}
+	public function showTechzone(){
+		print file_get_contents('html/home.html');
+	}
 	/*Creates left navigation panel
 	*/
 	public function leftNavPanel() {
@@ -172,9 +180,9 @@ You have chosen the following movies to be booked/purchased:
 		}
 		if(isset($_SESSION['member'])){
 			if($movie['numDVD']==0){
-				$btn_text='Onliy BluRay available';
+				$btn_text='Only BluRay available';
 			}elseif($movie['numBluRay']==0){
-				$btn_text='Onliy DVD available';
+				$btn_text='Only DVD available';
 			}
 			if(isset($_COOKIE['movies'])){
 				$movs=json_decode($_COOKIE['movies']);
