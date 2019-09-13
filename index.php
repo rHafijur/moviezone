@@ -1,17 +1,7 @@
- <?php 
-/*-------------------------------------------------------------------------------------------------
-@Module: index.php
-This server-side module provides main UI for the application (admin part)
-
-@Author: md redoy
-@Modified by: 
-@Date: 05/08/2019
--------------------------------------------------------------------------------------------------*/
-require_once('moviezone_main.php');
-?>
 
 <html>
 <head>
+    <title>Home</title>
 	<link rel="stylesheet" type="text/css" href="css/moviezone.css">
 	<script src="js/ajax.js"></script>
 	<script src="js/moviezone.js"></script>
@@ -21,7 +11,7 @@ require_once('moviezone_main.php');
 </head>
 
 <body>
-<div id="id_container">
+<div id="id_container" class="container">
 	<header>
 		<h1>MOVIE ZONE</h1>
 	</header>
@@ -29,43 +19,38 @@ require_once('moviezone_main.php');
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" href="#">Features</a>
-      <a class="nav-item nav-link" href="#">Pricing</a>
-      <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      <a class="nav-item nav-link" href="contact.php">Contact</a>
+      <a class="nav-item nav-link" href="techzone.php">TechZone</a>
+      <a class="nav-item nav-link" href="moviezone">MovieZone</a>
+      <a class="nav-item nav-link" href="moviezone/?page=add_member">Join</a>
     </div>
   </div>
 </nav>
-	<!-- left navigation area -->
-	<div id="id_left">
-		<!-- load the navigation panel by embedding php code -->
-		<?php $controller->loadLeftNavPanel()?>
-	</div>
-	<!-- right area -->	
-	<div id="id_right">
-		<!-- top navigation area -->
-		<div id="id_topnav">			
-			<!-- the top navigation panel is loaded on demand using Ajax (see js code) -->
-			
-		</div>
-		<div>
-		<?php
-			session_start();
-			if(isset($_SESSION['member'])){
-				print "<h2>Member: ".$_SESSION['member']."</h2>";
-			}
-			session_abort();
-			?>
-		</div>
-		<div id="id_content"></div>
-		<?php
-		session_start();
-		if(isset($_SESSION['success']) && $_SESSION['success']!=''){
-			print '<h3 style="color:green">'.$_SESSION['success'].'</h3>';
-		}
-		$_SESSION['success']='';
-		session_abort();
-		?>
-	</div>
+	<div class="row" >
+        <div class="col text-center">
+            <span style="font-size:35px">Welcome to the Emporium</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+        <p><span style="font-size: 25px;">The MovieZone Emporium</span> is known for its high quality and customer service. We are 
+        dedicated to procuring he finest movies for our customers. 
+        DVD was the premier digital video storage medium of the 20th 
+        century, and now you too can enjoy the crisp visuals and clean audio of DVD as well as 
+        the improved quality of the 21st century's storage medium of choice BluRay.</p>
+        <p><span style="font-size: 25px;">O</span>ur shop, conveniently located near Southern Cross University at the Gold Coast 
+        contains literally thousands of new and quality pre-loved DVDs and BluRays available 
+        for your viewing pleasure. Rent or purchase its up to you. Consider becoming a member as
+        this will allow you to book on-line and save you the disappointment of arriving only to 
+        find the movie you were wishing to view or purchase is currently out of stock.</p>
+        <p><span style="font-size: 25px;">T</span>o become a member please <a href="join.php">join up</a>.</p>
+        <p><span style="font-size: 25px;">Y</span>ou can view our extensive movie database in the <a href="moviezone">MovieZone
+        </a>.</p>
+        <p><span style="font-size: 25px;">A</span>s an additional service to our clientele our resident IT guru provides weekly advice
+        on important developments in the IT industry. View the advice from our store IT expert
+        in the<a href="techzone.php">TechZone</a>.</p>
+        </div>
+    </div>
 	<!-- footer area -->
 	<footer>Copyright &copy; MD ASHRAFUL ALAM REDOY </footer>
 </div>
