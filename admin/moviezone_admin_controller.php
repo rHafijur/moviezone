@@ -107,7 +107,7 @@ class MovieZoneAdminController {
 					$this->view->showError("Invalid File!");
 					return;
 				}
-				move_uploaded_file($file_tmp,"../photos/".$file_name);
+				move_uploaded_file($file_tmp,"../moviezone/photos/".$file_name);
 			}
 			$data=$_POST;
 			$data['poster']=$file_name;

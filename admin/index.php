@@ -24,6 +24,17 @@ require_once('moviezone_admin_main.php');
 	<header>
 		<h1>MOVIE ZONE</h1>
 	</header>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+	<a class="nav-item nav-link" href="../">Home </a>
+      <a class="nav-item nav-link" href="../contact.php">Contact</a>
+      <a class="nav-item nav-link" href="../techzone.php">TechZone</a>
+      <a class="nav-item nav-link active" href="../moviezone"><span class="sr-only">(current)</span>MovieZone</a>
+      <a class="nav-item nav-link" href="../moviezone/?page=add_member">Join</a>
+    </div>
+  </div>
+</nav>
 	<!-- left navigation area -->
 	<div id="id_left">
 		<!-- load the navigation panel by embedding php code -->

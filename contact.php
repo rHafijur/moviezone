@@ -35,15 +35,15 @@
         <div class="col">
         <div id="rightcol">
          <div class="text-center">
-            <img class="center" src="http://infotech.scu.edu.au/~vinh/moviezone/imgs/dvd_emporium.jpg" width="410" height="135" alt="Our extensive collection" title="Our extensive collection">
+            <img class="center" src="https://www.ikspiari.com/shop/shops/1273/__icsFiles/afieldfile/2017/08/29/1273_pic_main01.jpg" width="651" height="366" alt="Our extensive collection" title="Our extensive collection">
             <p class="contactCentered">Come on down and view our collection</p>
          </div>
          <div id="contactBlock">
-            <label>Phone:</label> (07) 1234-5678<br>
-            <label>Address:</label> Southern Cross Drive<br>
-            <label>&nbsp;</label>Bilinga, Queensland 4225<br>
-            <label>Email:</label><a href="mailto:info@DVD-Emporium.com.au?subject=Direct from DVD Emporium website">
-               info@DVD-Emporium.com.au</a><br>
+            <label>Phone:</label>0415131363<br>
+            <label>Address:</label>1/16 mccourt street<br>
+            <label>&nbsp;</label>wiley part, NSW, 2195<br>
+            <label>Email:</label><a href="mailto:redoyredoy00.a@gmail.com?subject=Direct from DVD Emporium website">
+               redoyredoy00.a@gmail.com</a><br>
          </div>
          </div>
         </div>

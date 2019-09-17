@@ -28,10 +28,10 @@ require_once('moviezone_main.php');
 	<nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
-	<a class="nav-item nav-link active" href="#">Home <span class="sr-only">(current)</span></a>
+	<a class="nav-item nav-link" href="../">Home </a>
       <a class="nav-item nav-link" href="../contact.php">Contact</a>
       <a class="nav-item nav-link" href="../techzone.php">TechZone</a>
-      <a class="nav-item nav-link" href="../moviezone">MovieZone</a>
+      <a class="nav-item nav-link active" href="../moviezone"><span class="sr-only">(current)</span>MovieZone</a>
       <a class="nav-item nav-link" href="../moviezone/?page=add_member">Join</a>
     </div>
   </div>

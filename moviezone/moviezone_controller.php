@@ -115,7 +115,7 @@ class MovieZoneController {
 			}else{
 				session_start();
 				$_SESSION['success']='Member Joined successfully';
-				session_abort();
+				// session_abort();
 				header('location:index.php');
 			}
 				
